@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelrahman Ewida — ML &amp; Optimization Research</title>
+<meta name="description" content="Abdelrahman Ewida — Computer Engineering researcher. Wearable-based stress detection (EAI PervasiveHealth 2025), multi-AGV scheduling optimization (ICEENG-IPCS 2026, IEEE).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1c1a;
+    --ink-soft: #55554f;
+    --paper: #fcfcfa;
+    --rule: #e2e1da;
+    --accent: #0e5a54;
+    --accent-soft: #eef4f2;
+    --serif: "Source Serif 4", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 4.5rem 1.5rem 5rem; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* Header */
+  header h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+  .tagline { margin-top: 0.7rem; font-size: 1.1rem; color: var(--ink-soft); max-width: 38rem; }
+  .id-links { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
+  .id-links a { text-decoration: none; }
+  .id-links a:hover { text-decoration: underline; }
+
+  /* Sections */
+  section { margin-top: 3.5rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+  }
+  section p + p { margin-top: 0.9rem; }
+
+  /* Publication entries — citation-record style */
+  .pub { padding: 1.25rem 1.25rem 1.15rem; border: 1px solid var(--rule); border-radius: 4px; }
+  .pub + .pub { margin-top: 1.25rem; }
+  .pub-meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; }
+  .pub h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; margin-top: 0.45rem; }
+  .pub .authors { margin-top: 0.4rem; font-size: 0.92rem; color: var(--ink-soft); }
+  .pub .authors strong { color: var(--ink); font-weight: 600; }
+  .pub .contribution { margin-top: 0.7rem; font-size: 0.97rem; }
+  .pub .result {
+    margin-top: 0.8rem; padding: 0.55rem 0.8rem; background: var(--accent-soft);
+    border-left: 3px solid var(--accent); font-size: 0.92rem; border-radius: 0 3px 3px 0;
+  }
+  .pub .links { margin-top: 0.85rem; font-family: var(--mono); font-size: 0.78rem; display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  .pub .links .pending { color: var(--ink-soft); }
+
+  /* Projects */
+  .project { margin-top: 1.6rem; }
+  .project:first-of-type { margin-top: 0; }
+  .project h3 { font-size: 1.08rem; font-weight: 600; }
+  .project .stack { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); margin-top: 0.2rem; }
+  .project p { margin-top: 0.5rem; font-size: 0.97rem; }
+  .project .links { margin-top: 0.45rem; font-family: var(--mono); font-size: 0.78rem; }
+  .todo { color: #8a6d1a; background: #faf5e4; padding: 0.05rem 0.4rem; border-radius: 3px; font-family: var(--mono); font-size: 0.74rem; }
+
+  /* Experience */
+  .exp { margin-top: 1.4rem; }
+  .exp:first-of-type { margin-top: 0; }
+  .exp h3 { font-size: 1.02rem; font-weight: 600; display: inline; }
+  .exp .where { color: var(--ink-soft); font-size: 0.95rem; }
+  .exp .when { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); display: block; margin-top: 0.15rem; }
+  .exp p { margin-top: 0.4rem; font-size: 0.96rem; }
+
+  /* CV block */
+  .cv-block { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .cv-btn {
+    display: inline-block; font-family: var(--mono); font-size: 0.85rem;
+    background: var(--accent); color: #fff; text-decoration: none;
+    padding: 0.6rem 1.2rem; border-radius: 4px;
+  }
+  .cv-btn:hover { background: #0a4741; text-decoration: none; }
+  .cv-note { font-size: 0.9rem; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  }
+  @media (max-width: 480px) {
+    main { padding-top: 3rem; }
+    header h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Abdelrahman Ewida</h1>
+    <p class="tagline">Computer Engineering researcher — machine learning on physiological signals and combinatorial optimization for multi-agent systems. B.Sc. at the German University in Cairo; thesis research at Universität Augsburg.</p>
+    <nav class="id-links" aria-label="Profiles">
+      <a href="mailto:abdelrahmanmohamed237070@gmail.com">email</a>
+      <a href="https://github.com/Tatos23">github</a>
+      <a href="https://www.linkedin.com/in/a-ewida">linkedin</a>
+      <a href="https://orcid.org/0009-0001-9208-9983">orcid</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2 class="section-label">About</h2>
+    <p>I work at the intersection of applied machine learning and systems engineering: building models that run against real sensors, real constraints, and real latency budgets rather than static benchmarks. My thesis at the Human-Centered AI lab, Universität Augsburg (Prof. Elisabeth André), produced a real-time wearable stress-detection and intervention system, completed with grade A+.</p>
+    <p>I am a Category&nbsp;"A" scholar at the GUC and a national-level competitive swimmer, which is where I learned that consistent, measured training beats sporadic intensity — in the pool and in research.</p>
+  </section>
+
+  <section id="publications">
+    <h2 class="section-label">Publications</h2>
+
+    <article class="pub">
+      <div class="pub-meta">EAI PervasiveHealth 2025 · Springer LNICST · in press</div>
+      <h3>Design of Wearable-Based Real-Time Stress Detection and Breathing Intervention for Workplace Well-Being</h3>
+      <p class="authors"><strong>Abdelrahman Ewida</strong>, Thomas Kiderle, Elisabeth André, Bhargavi Mahesh</p>
+      <p class="contribution">Lead author. End-to-end system that streams ECG from a Polar H10 chest sensor over BLE, extracts HRV features in sliding windows, classifies stress with a Random Forest, and delivers a context-aware guided breathing intervention that defers to the user (no interruption while typing; user confirms before it starts).</p>
+      <p class="result">81.05% mean accuracy under leave-one-subject-out cross-validation on WESAD (15 subjects), deployed in a live React&nbsp;Native / Flask pipeline at ~130&nbsp;Hz.</p>
+      <div class="links">
+        <span class="pending">[PDF on request]</span>
+        <span class="pending">[DOI pending]</span>
+      </div>
+    </article>
+
+    <article class="pub">
+      <div class="pub-meta">ICEENG-IPCS 2026 · IEEE · in press</div>
+      <h3>Optimization of Multi-AGV Scheduling for Airport Baggage Handling</h3>
+      <p class="authors">Abdallah A. Hassan, <strong>Abdelrahman Ewida</strong>, Haidy E. Elkenawy, Abdulrahman B. Bahy, Karim M. Fathy, Dalia M. Mahfouz, Omar M. Shehata</p>
+      <p class="contribution">Co-author. Multi-objective VRPTW formulation for airport baggage AGVs, benchmarking Simulated Annealing, Genetic Algorithm, Ant Colony Optimization, and Q-Learning against a proposed Hybrid Artificial Bee Colony algorithm combining discrete routing operators with continuous start-time perturbation.</p>
+      <p class="result">Hybrid ABC improved operational efficiency by ~61% over the FCFS baseline while cutting fleet size from 11 to 3 AGVs on the standard instance; Q-Learning traded optimality for ~1&nbsp;s execution, motivating a hierarchical plan-then-recover architecture.</p>
+      <div class="links">
+        <span class="pending">[PDF on request]</span>
+        <span class="pending">[DOI pending]</span>
+      </div>
+    </article>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-label">Selected Projects</h2>
+
+    <article class="project">
+      <h3>Intelligent Airline Assistant &amp; Knowledge Graph</h3>
+      <div class="stack">Python · Neo4j · Scikit-Learn</div>
+      <p>Passenger-satisfaction prediction pipeline (Random Forest / FFNN) with SHAP and LIME explainability, paired with a Neo4j knowledge-graph RAG system that answers complex travel queries through vector embeddings and graph traversal.</p>
+      <div class="links"><span class="todo">GitHub link pending</span></div>
+    </article>
+
+    <article class="project">
+      <h3>Custom Database Management System</h3>
+      <div class="stack">Java · B+ Trees</div>
+      <p>A database engine built from scratch: B+ tree indexing, page serialization, and binary search over pages to support efficient CRUD operations — no libraries doing the heavy lifting.</p>
+      <div class="links"><span class="todo">GitHub link pending</span></div>
+    </article>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-label">Experience</h2>
+
+    <div class="exp">
+      <h3>Research Thesis Student</h3> <span class="where">— Human-Centered AI, Universität Augsburg, Germany</span>
+      <span class="when">2025 · semester exchange</span>
+      <p>Wearable sensor integration for breathing-based emotion regulation, supervised by Prof. Dr. Elisabeth André. Resulted in the PervasiveHealth 2025 publication. Grade: A+.</p>
+    </div>
+
+    <div class="exp">
+      <h3>IT Networks &amp; Applications Intern</h3> <span class="where">— National Automotive Company (NATCO), Egypt</span>
+      <span class="when">Jun – Aug 2024</span>
+      <p>Built an employee records management system in C#/.NET with EF Core; designed normalized SQL schemas and optimized reporting with LINQ.</p>
+    </div>
+  </section>
+
+  <section id="cv">
+    <h2 class="section-label">Curriculum Vitae</h2>
+    <div class="cv-block">
+      <a class="cv-btn" href="cv.pdf" download>Download CV (PDF)</a>
+      <span class="cv-note">Last updated July 2026</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Abdelrahman Ewida</span>
+    <span>Built by hand — no template</span>
+  </footer>
+</main>
+</body>
+</html>
