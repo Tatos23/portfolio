@@ -460,19 +460,26 @@
     }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' });
     heroObserver.observe(hero);
 
+    function setActive(id) {
+      navLinks.forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('data-nav') === id);
+      });
+    }
+
     var sectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.id;
-          navLinks.forEach(function (link) {
-            link.classList.toggle('is-active', link.getAttribute('data-nav') === id);
-          });
-        }
+        if (entry.isIntersecting) setActive(entry.target.id);
       });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
     sections.forEach(function (section) {
       if (section) sectionObserver.observe(section);
     });
+
+    var lastNavId = navLinks.length ? navLinks[navLinks.length - 1].getAttribute('data-nav') : null;
+    window.addEventListener('scroll', function () {
+      var atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 40;
+      if (atBottom && lastNavId) setActive(lastNavId);
+    }, { passive: true });
   })();
 </script>
 </body>
