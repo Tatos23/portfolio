@@ -165,8 +165,12 @@
 
   /* ---------- Motion: scroll reveal ---------- */
   @media (prefers-reduced-motion: no-preference) {
-    .js .reveal { opacity: 0; transform: translateY(16px); }
-    .js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 500ms ease-out var(--d, 0ms), transform 500ms ease-out var(--d, 0ms);
+    }
+    .js .reveal.revealed { opacity: 1; transform: translateY(0); }
   }
 
   /* ---------- About ---------- */
@@ -225,6 +229,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+  .project-grid > .reveal { display: grid; }
   @media (max-width: 768px) {
     .project-grid { grid-template-columns: 1fr; }
   }
@@ -369,76 +374,92 @@
   <section class="section" id="publications">
     <h2 class="section-heading reveal">Publications</h2>
     <div class="pub-list">
-      <article class="pub reveal">
-        <div class="pub-meta">EAI PervasiveHealth 2025 · Springer LNICST · in press</div>
-        <h3>Design of Wearable-Based Real-Time Stress Detection and Breathing Intervention for Workplace Well-Being</h3>
-        <p class="authors"><strong>Abdelrahman Ewida</strong>, Thomas Kiderle, Elisabeth André, Bhargavi Mahesh</p>
-        <p class="contribution">Lead author. End-to-end system that streams ECG from a Polar H10 chest sensor over BLE, extracts HRV features in sliding windows, classifies stress with a Random Forest, and delivers a context-aware guided breathing intervention that defers to the user (no interruption while typing; user confirms before it starts).</p>
-        <p class="result">81.05% mean accuracy under leave-one-subject-out cross-validation on WESAD (15 subjects), deployed in a live React&nbsp;Native / Flask pipeline at ~130&nbsp;Hz.</p>
-        <div class="links">
-          <span class="pending">[PDF on request]</span>
-          <span class="pending">[DOI pending]</span>
-        </div>
-      </article>
+      <div class="reveal">
+        <article class="pub">
+          <div class="pub-meta">EAI PervasiveHealth 2025 · Springer LNICST · in press</div>
+          <h3>Design of Wearable-Based Real-Time Stress Detection and Breathing Intervention for Workplace Well-Being</h3>
+          <p class="authors"><strong>Abdelrahman Ewida</strong>, Thomas Kiderle, Elisabeth André, Bhargavi Mahesh</p>
+          <p class="contribution">Lead author. End-to-end system that streams ECG from a Polar H10 chest sensor over BLE, extracts HRV features in sliding windows, classifies stress with a Random Forest, and delivers a context-aware guided breathing intervention that defers to the user (no interruption while typing; user confirms before it starts).</p>
+          <p class="result">81.05% mean accuracy under leave-one-subject-out cross-validation on WESAD (15 subjects), deployed in a live React&nbsp;Native / Flask pipeline at ~130&nbsp;Hz.</p>
+          <div class="links">
+            <span class="pending">[PDF on request]</span>
+            <span class="pending">[DOI pending]</span>
+          </div>
+        </article>
+      </div>
 
-      <article class="pub reveal">
-        <div class="pub-meta">ICEENG-IPCS 2026 · IEEE · in press</div>
-        <h3>Optimization of Multi-AGV Scheduling for Airport Baggage Handling</h3>
-        <p class="authors">Abdallah A. Hassan, <strong>Abdelrahman Ewida</strong>, Haidy E. Elkenawy, Abdulrahman B. Bahy, Karim M. Fathy, Dalia M. Mahfouz, Omar M. Shehata</p>
-        <p class="contribution">Co-author. Multi-objective VRPTW formulation for airport baggage AGVs, benchmarking Simulated Annealing, Genetic Algorithm, Ant Colony Optimization, and Q-Learning against a proposed Hybrid Artificial Bee Colony algorithm combining discrete routing operators with continuous start-time perturbation.</p>
-        <p class="result">Hybrid ABC improved operational efficiency by ~61% over the FCFS baseline while cutting fleet size from 11 to 3 AGVs on the standard instance; Q-Learning traded optimality for ~1&nbsp;s execution, motivating a hierarchical plan-then-recover architecture.</p>
-        <div class="links">
-          <span class="pending">[PDF on request]</span>
-          <span class="pending">[DOI pending]</span>
-        </div>
-      </article>
+      <div class="reveal">
+        <article class="pub">
+          <div class="pub-meta">ICEENG-IPCS 2026 · IEEE · in press</div>
+          <h3>Optimization of Multi-AGV Scheduling for Airport Baggage Handling</h3>
+          <p class="authors">Abdallah A. Hassan, <strong>Abdelrahman Ewida</strong>, Haidy E. Elkenawy, Abdulrahman B. Bahy, Karim M. Fathy, Dalia M. Mahfouz, Omar M. Shehata</p>
+          <p class="contribution">Co-author. Multi-objective VRPTW formulation for airport baggage AGVs, benchmarking Simulated Annealing, Genetic Algorithm, Ant Colony Optimization, and Q-Learning against a proposed Hybrid Artificial Bee Colony algorithm combining discrete routing operators with continuous start-time perturbation.</p>
+          <p class="result">Hybrid ABC improved operational efficiency by ~61% over the FCFS baseline while cutting fleet size from 11 to 3 AGVs on the standard instance; Q-Learning traded optimality for ~1&nbsp;s execution, motivating a hierarchical plan-then-recover architecture.</p>
+          <div class="links">
+            <span class="pending">[PDF on request]</span>
+            <span class="pending">[DOI pending]</span>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
   <section class="section" id="projects">
     <h2 class="section-heading reveal">Selected Projects</h2>
     <div class="project-grid">
-      <article class="project reveal">
-        <h3>ClusterChaos: Amazon Microservices Replica</h3>
-        <div class="stack">Java · Spring Boot · Kubernetes · RabbitMQ</div>
-        <p>A 5-service e-commerce backend (team of 13) with per-service polyglot persistence across PostgreSQL, Cassandra, Neo4j, Elasticsearch, and Redis, a choreography saga over RabbitMQ with DLQs and idempotent consumers, a JWT-validating API gateway, and full Kubernetes deployment with Prometheus, Grafana, and Loki observability.</p>
-        <div class="links"><span class="todo">GitHub link pending</span></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>ClusterChaos: Amazon Microservices Replica</h3>
+          <div class="stack">Java · Spring Boot · Kubernetes · RabbitMQ</div>
+          <p>A 5-service e-commerce backend (team of 13) with per-service polyglot persistence across PostgreSQL, Cassandra, Neo4j, Elasticsearch, and Redis, a choreography saga over RabbitMQ with DLQs and idempotent consumers, a JWT-validating API gateway, and full Kubernetes deployment with Prometheus, Grafana, and Loki observability.</p>
+          <div class="links"><span class="todo">GitHub link pending</span></div>
+        </article>
+      </div>
 
-      <article class="project reveal">
-        <h3>SBOM Generator</h3>
-        <div class="stack">Python · Docker · Click · CycloneDX / SPDX</div>
-        <p>A command-line tool (built in a team of 4) that scans Python and Java projects, resolves transitive dependency trees via the PyPI and Maven Central APIs, generates schema-validated CycloneDX 1.7 and SPDX 3.0 SBOMs, and produces OSV-based CVE reports sorted by severity.</p>
-        <div class="links"><a href="https://github.com/Tatos23/sbom-generator">github.com/Tatos23/sbom-generator</a></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>SBOM Generator</h3>
+          <div class="stack">Python · Docker · Click · CycloneDX / SPDX</div>
+          <p>A command-line tool (built in a team of 4) that scans Python and Java projects, resolves transitive dependency trees via the PyPI and Maven Central APIs, generates schema-validated CycloneDX 1.7 and SPDX 3.0 SBOMs, and produces OSV-based CVE reports sorted by severity.</p>
+          <div class="links"><a href="https://github.com/Tatos23/sbom-generator">github.com/Tatos23/sbom-generator</a></div>
+        </article>
+      </div>
 
-      <article class="project reveal">
-        <h3>Intelligent Airline Assistant &amp; Knowledge Graph</h3>
-        <div class="stack">Python · Neo4j · Scikit-Learn</div>
-        <p>Passenger-satisfaction prediction pipeline (Random Forest) with SHAP and LIME explainability, paired with a Neo4j knowledge-graph RAG system that answers complex travel queries through vector embeddings and graph traversal.</p>
-        <div class="links"><a href="https://github.com/Tatos23/Airline-Customer-Holiday-Booking">github.com/Tatos23/Airline-Customer-Holiday-Booking</a></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>Intelligent Airline Assistant &amp; Knowledge Graph</h3>
+          <div class="stack">Python · Neo4j · Scikit-Learn</div>
+          <p>Passenger-satisfaction prediction pipeline (Random Forest) with SHAP and LIME explainability, paired with a Neo4j knowledge-graph RAG system that answers complex travel queries through vector embeddings and graph traversal.</p>
+          <div class="links"><a href="https://github.com/Tatos23/Airline-Customer-Holiday-Booking">github.com/Tatos23/Airline-Customer-Holiday-Booking</a></div>
+        </article>
+      </div>
 
-      <article class="project reveal">
-        <h3>AI Game Agents &amp; Logic Reasoning</h3>
-        <div class="stack">Java · Prolog · Minimax · Situation Calculus</div>
-        <p>Two agents: an adversarial search agent that plays a turn-based battle game with Minimax and alpha-beta pruning, and a Prolog planning agent that reasons in the Situation Calculus, using iterative deepening to keep backward chaining complete.</p>
-        <div class="links"><a href="https://github.com/Tatos23/ai-game-agents">github.com/Tatos23/ai-game-agents</a></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>AI Game Agents &amp; Logic Reasoning</h3>
+          <div class="stack">Java · Prolog · Minimax · Situation Calculus</div>
+          <p>Two agents: an adversarial search agent that plays a turn-based battle game with Minimax and alpha-beta pruning, and a Prolog planning agent that reasons in the Situation Calculus, using iterative deepening to keep backward chaining complete.</p>
+          <div class="links"><a href="https://github.com/Tatos23/ai-game-agents">github.com/Tatos23/ai-game-agents</a></div>
+        </article>
+      </div>
 
-      <article class="project reveal">
-        <h3>Custom Database Management System</h3>
-        <div class="stack">Java · B+ Trees</div>
-        <p>A database engine built from scratch: B+ tree indexing, page serialization, and binary search over pages to support efficient CRUD operations — no libraries doing the heavy lifting.</p>
-        <div class="links"><span class="todo">GitHub link pending</span></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>Custom Database Management System</h3>
+          <div class="stack">Java · B+ Trees</div>
+          <p>A database engine built from scratch: B+ tree indexing, page serialization, and binary search over pages to support efficient CRUD operations — no libraries doing the heavy lifting.</p>
+          <div class="links"><span class="todo">GitHub link pending</span></div>
+        </article>
+      </div>
 
-      <article class="project reveal">
-        <h3>Ajaza: Virtual Trip Planner</h3>
-        <div class="stack">MERN · MongoDB · Express · React · Node.js</div>
-        <p>A full-stack web application for travel budgeting and itinerary planning, integrating third-party APIs for real-time booking data and secure user authentication.</p>
-        <div class="links"><a href="https://github.com/Tatos23/Ajaza">github.com/Tatos23/Ajaza</a></div>
-      </article>
+      <div class="reveal">
+        <article class="project">
+          <h3>Ajaza: Virtual Trip Planner</h3>
+          <div class="stack">MERN · MongoDB · Express · React · Node.js</div>
+          <p>A full-stack web application for travel budgeting and itinerary planning, integrating third-party APIs for real-time booking data and secure user authentication.</p>
+          <div class="links"><a href="https://github.com/Tatos23/Ajaza">github.com/Tatos23/Ajaza</a></div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -517,10 +538,9 @@
             return c.classList.contains('reveal');
           });
           var delay = Math.min(siblings.indexOf(el), 6) * 60;
-          el.style.transition = 'opacity 500ms ease-out ' + delay + 'ms, transform 500ms ease-out ' + delay + 'ms';
-          el.classList.add('is-visible');
+          el.style.setProperty('--d', delay + 'ms');
+          el.classList.add('revealed');
           obs.unobserve(el);
-          window.setTimeout(function () { el.style.transition = ''; }, 500 + delay + 60);
         });
       }, { threshold: 0.15 });
       document.querySelectorAll('.reveal').forEach(function (el) {
