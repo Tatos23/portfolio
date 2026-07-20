@@ -54,18 +54,18 @@
     border-bottom: 1px solid var(--rule);
   }
 
-  main { padding: 2rem 0 6rem; }
+  main { padding: 3.5rem 0 6rem; }
   main > .section + .section { margin-top: 5.5rem; }
 
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    min-height: 82dvh;
+    min-height: 78dvh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     overflow: hidden;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 1.25rem;
     background-image: radial-gradient(circle, rgba(61,220,151,0.05) 1px, transparent 1px);
     background-size: 24px 24px;
   }
@@ -477,7 +477,7 @@
 
     var lastNavId = navLinks.length ? navLinks[navLinks.length - 1].getAttribute('data-nav') : null;
     window.addEventListener('scroll', function () {
-      var atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 40;
+      var atBottom = window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight - 2;
       if (atBottom && lastNavId) setActive(lastNavId);
     }, { passive: true });
   })();
