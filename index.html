@@ -60,32 +60,22 @@
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    min-height: 100dvh;
+    min-height: 88dvh;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
     padding: 2rem 1.5rem;
+    background-image: radial-gradient(circle, rgba(61,220,151,0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
-  .hero-ecg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-    z-index: 0;
+
+  .hero-rule {
+    width: 72px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1.75rem;
   }
-  .hero-ecg svg { width: 100%; height: auto; }
-  .hero-ecg path {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1.5;
-    opacity: 0.32;
-    stroke-dasharray: 10 8;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-ecg path { animation: ecg-flow 7s linear infinite; }
-  }
-  @keyframes ecg-flow { to { stroke-dashoffset: -720; } }
 
   .hero-content { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; width: 100%; }
   .hero-name {
@@ -119,24 +109,6 @@
     transition: border-color 150ms ease-out, color 150ms ease-out;
   }
   .hero-links a:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-  .scroll-indicator {
-    position: absolute;
-    left: 50%;
-    bottom: 2rem;
-    transform: translateX(-50%);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .scroll-indicator svg { stroke: var(--ink-soft); }
 
   /* ---------- Sticky nav ---------- */
   .site-nav {
@@ -335,12 +307,8 @@
 <body>
 
 <header class="hero" id="hero">
-  <div class="hero-ecg" aria-hidden="true">
-    <svg viewBox="0 0 1000 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 L100,60 L115,60 L125,20 L135,100 L145,10 L155,70 L165,60 L400,60 L415,60 L425,20 L435,100 L445,10 L455,70 L465,60 L700,60 L715,60 L725,20 L735,100 L745,10 L755,70 L765,60 L1000,60" />
-    </svg>
-  </div>
   <div class="hero-content">
+    <div class="hero-rule" aria-hidden="true"></div>
     <h1 class="hero-name">Abdelrahman Ewida</h1>
     <p class="hero-tagline">Computer Engineering researcher — machine learning on physiological signals and combinatorial optimization for multi-agent systems. B.Sc. at the German University in Cairo; thesis research at Universität Augsburg.</p>
     <nav class="hero-links" aria-label="Profiles">
@@ -349,12 +317,6 @@
       <a href="https://www.linkedin.com/in/a-ewida">linkedin</a>
       <a href="https://orcid.org/0009-0001-9208-9983">orcid</a>
     </nav>
-  </div>
-  <div class="scroll-indicator" aria-hidden="true">
-    <span>scroll</span>
-    <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 1L7 7L13 1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
   </div>
 </header>
 
