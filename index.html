@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abdelrahman Ewida — ML &amp; Optimization Research</title>
@@ -110,6 +111,21 @@
   }
   .hero-links a:hover { border-color: var(--accent-dim); color: var(--accent); }
 
+  @media (prefers-reduced-motion: no-preference) {
+    .js .hero-rule, .js .hero-name, .js .hero-tagline, .js .hero-links {
+      opacity: 0;
+      animation: hero-in 500ms ease-out forwards;
+    }
+    .js .hero-rule { animation-delay: 0ms; }
+    .js .hero-name { animation-delay: 150ms; }
+    .js .hero-tagline { animation-delay: 300ms; }
+    .js .hero-links { animation-delay: 450ms; }
+  }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   /* ---------- Sticky nav ---------- */
   .site-nav {
     position: fixed;
@@ -147,6 +163,12 @@
   .site-nav a:hover { color: var(--ink-bright); }
   .site-nav a.is-active { color: var(--accent); border-bottom-color: var(--accent); }
 
+  /* ---------- Motion: scroll reveal ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .reveal { opacity: 0; transform: translateY(16px); }
+    .js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  }
+
   /* ---------- About ---------- */
   .about-body { max-width: 42rem; }
   .about-body p + p { margin-top: 1.1rem; }
@@ -155,10 +177,12 @@
   .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
   .pub {
     background: var(--bg-elevated);
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid var(--accent-dim);
     border-radius: 0 6px 6px 0;
     padding: 1.75rem 2rem;
+    transition: border-color 200ms ease-out;
   }
+  .pub:hover { border-left-color: var(--accent); }
   .pub-meta {
     font-family: var(--mono);
     font-size: 0.74rem;
@@ -335,17 +359,17 @@
 
 <main>
   <section class="section" id="about">
-    <h2 class="section-heading">About</h2>
-    <div class="about-body">
+    <h2 class="section-heading reveal">About</h2>
+    <div class="about-body reveal">
       <p>I work at the intersection of applied machine learning and systems engineering: building models that run against real sensors, real constraints, and real latency budgets rather than static benchmarks. My thesis at the Human-Centered AI lab, Universität Augsburg (Prof. Elisabeth André), produced a real-time wearable stress-detection and intervention system, completed with grade A+.</p>
       <p>I am a Category&nbsp;"A" scholar at the GUC and a national-level competitive swimmer, which is where I learned that consistent, measured training beats sporadic intensity — in the pool and in research.</p>
     </div>
   </section>
 
   <section class="section" id="publications">
-    <h2 class="section-heading">Publications</h2>
+    <h2 class="section-heading reveal">Publications</h2>
     <div class="pub-list">
-      <article class="pub">
+      <article class="pub reveal">
         <div class="pub-meta">EAI PervasiveHealth 2025 · Springer LNICST · in press</div>
         <h3>Design of Wearable-Based Real-Time Stress Detection and Breathing Intervention for Workplace Well-Being</h3>
         <p class="authors"><strong>Abdelrahman Ewida</strong>, Thomas Kiderle, Elisabeth André, Bhargavi Mahesh</p>
@@ -357,7 +381,7 @@
         </div>
       </article>
 
-      <article class="pub">
+      <article class="pub reveal">
         <div class="pub-meta">ICEENG-IPCS 2026 · IEEE · in press</div>
         <h3>Optimization of Multi-AGV Scheduling for Airport Baggage Handling</h3>
         <p class="authors">Abdallah A. Hassan, <strong>Abdelrahman Ewida</strong>, Haidy E. Elkenawy, Abdulrahman B. Bahy, Karim M. Fathy, Dalia M. Mahfouz, Omar M. Shehata</p>
@@ -372,44 +396,44 @@
   </section>
 
   <section class="section" id="projects">
-    <h2 class="section-heading">Selected Projects</h2>
+    <h2 class="section-heading reveal">Selected Projects</h2>
     <div class="project-grid">
-      <article class="project">
+      <article class="project reveal">
         <h3>ClusterChaos: Amazon Microservices Replica</h3>
         <div class="stack">Java · Spring Boot · Kubernetes · RabbitMQ</div>
         <p>A 5-service e-commerce backend (team of 13) with per-service polyglot persistence across PostgreSQL, Cassandra, Neo4j, Elasticsearch, and Redis, a choreography saga over RabbitMQ with DLQs and idempotent consumers, a JWT-validating API gateway, and full Kubernetes deployment with Prometheus, Grafana, and Loki observability.</p>
         <div class="links"><span class="todo">GitHub link pending</span></div>
       </article>
 
-      <article class="project">
+      <article class="project reveal">
         <h3>SBOM Generator</h3>
         <div class="stack">Python · Docker · Click · CycloneDX / SPDX</div>
         <p>A command-line tool (built in a team of 4) that scans Python and Java projects, resolves transitive dependency trees via the PyPI and Maven Central APIs, generates schema-validated CycloneDX 1.7 and SPDX 3.0 SBOMs, and produces OSV-based CVE reports sorted by severity.</p>
         <div class="links"><a href="https://github.com/Tatos23/sbom-generator">github.com/Tatos23/sbom-generator</a></div>
       </article>
 
-      <article class="project">
+      <article class="project reveal">
         <h3>Intelligent Airline Assistant &amp; Knowledge Graph</h3>
         <div class="stack">Python · Neo4j · Scikit-Learn</div>
         <p>Passenger-satisfaction prediction pipeline (Random Forest) with SHAP and LIME explainability, paired with a Neo4j knowledge-graph RAG system that answers complex travel queries through vector embeddings and graph traversal.</p>
         <div class="links"><a href="https://github.com/Tatos23/Airline-Customer-Holiday-Booking">github.com/Tatos23/Airline-Customer-Holiday-Booking</a></div>
       </article>
 
-      <article class="project">
+      <article class="project reveal">
         <h3>AI Game Agents &amp; Logic Reasoning</h3>
         <div class="stack">Java · Prolog · Minimax · Situation Calculus</div>
         <p>Two agents: an adversarial search agent that plays a turn-based battle game with Minimax and alpha-beta pruning, and a Prolog planning agent that reasons in the Situation Calculus, using iterative deepening to keep backward chaining complete.</p>
         <div class="links"><a href="https://github.com/Tatos23/ai-game-agents">github.com/Tatos23/ai-game-agents</a></div>
       </article>
 
-      <article class="project">
+      <article class="project reveal">
         <h3>Custom Database Management System</h3>
         <div class="stack">Java · B+ Trees</div>
         <p>A database engine built from scratch: B+ tree indexing, page serialization, and binary search over pages to support efficient CRUD operations — no libraries doing the heavy lifting.</p>
         <div class="links"><span class="todo">GitHub link pending</span></div>
       </article>
 
-      <article class="project">
+      <article class="project reveal">
         <h3>Ajaza: Virtual Trip Planner</h3>
         <div class="stack">MERN · MongoDB · Express · React · Node.js</div>
         <p>A full-stack web application for travel budgeting and itinerary planning, integrating third-party APIs for real-time booking data and secure user authentication.</p>
@@ -419,15 +443,15 @@
   </section>
 
   <section class="section" id="experience">
-    <h2 class="section-heading">Experience</h2>
+    <h2 class="section-heading reveal">Experience</h2>
     <div class="timeline">
-      <div class="exp">
+      <div class="exp reveal">
         <h3>Research Thesis Student</h3> <span class="where">— Human-Centered AI, Universität Augsburg, Germany</span>
         <span class="when">2025 · semester exchange</span>
         <p>Wearable sensor integration for breathing-based emotion regulation, supervised by Prof. Dr. Elisabeth André. Resulted in the PervasiveHealth 2025 publication. Grade: A+.</p>
       </div>
 
-      <div class="exp">
+      <div class="exp reveal">
         <h3>IT Networks &amp; Applications Intern</h3> <span class="where">— National Automotive Company (NATCO), Egypt</span>
         <span class="when">Jun – Aug 2024</span>
         <p>Built an employee records management system in C#/.NET with EF Core; designed normalized SQL schemas and optimized reporting with LINQ.</p>
@@ -436,8 +460,8 @@
   </section>
 
   <section class="section" id="cv">
-    <h2 class="section-heading">Curriculum Vitae</h2>
-    <div class="cv-block">
+    <h2 class="section-heading reveal">Curriculum Vitae</h2>
+    <div class="cv-block reveal">
       <a class="cv-btn" href="Abdelrahman_Ewida_CV.pdf" download>Download CV (PDF)</a>
     </div>
   </section>
@@ -483,6 +507,26 @@
       var atBottom = window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight - 2;
       if (atBottom && lastNavId) setActive(lastNavId);
     }, { passive: true });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var revealObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var siblings = Array.prototype.filter.call(el.parentElement.children, function (c) {
+            return c.classList.contains('reveal');
+          });
+          var delay = Math.min(siblings.indexOf(el), 6) * 60;
+          el.style.transition = 'opacity 500ms ease-out ' + delay + 'ms, transform 500ms ease-out ' + delay + 'ms';
+          el.classList.add('is-visible');
+          obs.unobserve(el);
+          window.setTimeout(function () { el.style.transition = ''; }, 500 + delay + 60);
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    }
   })();
 </script>
 </body>
